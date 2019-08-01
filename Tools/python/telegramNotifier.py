@@ -1,20 +1,13 @@
 import json
 import requests
 import urllib
-import sys
 
-TOKEN = "YOURTOKEN"
-URL = "https://api.telegram.org/bot{}/".format(TOKEN)
+from TelegramNotifier.Tools.user import telegramBotToken, telegramUserID
 
-def main(argv):
+URL = "https://api.telegram.org/bot{}/".format(telegramBotToken)
 
-    if len(argv) > 1:
-        text = argv[1]
-    else:
-        text = "default"
-
-    id = "YOURID"
-    send_message(text, id)
+def send( text ):
+    send_message(text, telegramUserID)
 
 
 def get_url(url):
@@ -46,9 +39,11 @@ def get_last_chat_id_and_text(updates):
 def send_message(text, chat_id):
     text = urllib.quote_plus(text)
     url = URL + "sendMessage?text={}&chat_id={}".format(text, chat_id)
-    print "getting url: " + url
     get_url(url)
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+
+    import sys
+    text = " ".join( sys.argv[1:] ) if len( sys.argv ) > 1 else "test"
+    send( text )
