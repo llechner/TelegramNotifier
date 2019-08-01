@@ -24,7 +24,7 @@ TelegramNotifier/Tools/python/user.py
 ```
 
 #### Get User ID:
-Visit https://api.telegram.org/bot/getUpdates and copy your UserID to
+Visit https://api.telegram.org/botTOKEN/getUpdates and copy your UserID to
 
 ```
 TelegramNotifier/Tools/python/user.py
